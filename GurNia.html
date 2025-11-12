@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GurNia</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f9f9f9;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    nav h1 {
+      font-size: 1.8em;
+      color: gold;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: gold;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+      color: white;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .hero h2 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.2em;
+      max-width: 600px;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 10px 25px;
+      background: gold;
+      border: none;
+      color: #111;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: white;
+      color: #111;
+    }
+
+    /* Sections */
+    section {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    h2.section-title {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 30px;
+      color: #111;
+      position: relative;
+    }
+
+    h2.section-title::after {
+      content: "";
+      position: absolute;
+      width: 60px;
+      height: 4px;
+      background: gold;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* About */
+    .about {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .about img {
+      width: 200px;
+      border-radius: 50%;
+      border: 5px solid gold;
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    /* Education */
+    .education-item {
+      background: white;
+      padding: 20px;
+      margin-bottom: 15px;
+      border-left: 5px solid gold;
+      border-radius: 5px;
+    }
+
+    /* Projects */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover {
+      transform: scale(1.03);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .project-card h3 {
+      padding: 15px;
+      font-size: 1.3em;
+    }
+
+    .project-card p {
+      padding: 0 15px 15px;
+      color: #555;
+    }
+
+    /* Skills */
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .skill {
+      background: gold;
+      color: #111;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-weight: bold;
+    }
+
+    /* Contact */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      max-width: 500px;
+      margin: auto;
+      gap: 10px;
+    }
+
+    .contact-form input, .contact-form textarea {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    .contact-form button {
+      background: gold;
+      border: none;
+      padding: 10px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .contact-form button:hover {
+      background: #111;
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      background: #111;
+      color: white;
+      padding: 15px 0;
+      margin-top: 50px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .about {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav ul {
+        flex-direction: column;
+        background: #111;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        display: none;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+        cursor: pointer;
+      }
+    }
+
+    .menu-toggle {
+      display: none;
+      color: white;
+      font-size: 1.5em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <h1>GurNia</h1>
+      <span class="menu-toggle">☰</span>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <h2>Hello, I'm <span style="color: gold;">Sonia</span></h2>
+    <p>A Passionate Web Developer specializing in building modern, responsive websites.</p>
+    <button class="btn">View My Work</button>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about">
+      <div class="about-text">
+        <p>Hello! I’m Sonia, a web developer based in India. I love turning ideas into reality using code. With strong skills in HTML, CSS, and JavaScript, I aim to create visually appealing and user-friendly websites.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education">
+    <h2 class="section-title">Education</h2>
+    <div class="education-item">
+      <h3>Bachelor of Arts</h3>
+      <p>kurukshetra University, 2020 - 2023</p>
+      <p>CGPA: 8.5 / 10</p>
+    </div>
+    <div class="education-item">
+      <h3>High School</h3>
+      <p>Jain Girls Sr.Sec. School, 2018 - 2020</p>
+      <p>Percentage: 70%</p>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects">
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1607083206968-13611e3f6edb?auto=format&fit=crop&w=600&q=80" alt="Project 1">
+        <p>This project is a fully responsive e-commerce website created using HTML, CSS, and JavaScript. It features a sleek and modern user interface that adapts seamlessly to all screen sizes, providing an excellent shopping experience on both desktop and mobile devices. The JavaScript functionality allows users to add products to their cart, view the total price dynamically, and manage their selections in real-time without page reloads. The CSS styling enhances the overall look with elegant colors, smooth transitions, and a clean layout. This project demonstrates front-end development skills, responsive design techniques, and interactive web functionality — perfect for showcasing as part of a professional web developer portfolio.</p>
+      </div>
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="Project 2">
+        <h3>Portfolio Website</h3>
+        <p>My personal portfolio showcasing my web development skills and projects.</br>A modern and responsive personal portfolio website built to showcase my web development skills, creative projects, and professional journey. It highlights my expertise in HTML, CSS, and JavaScript with a clean design, smooth navigation, and interactive sections that present my work and achievements effectively.</p>
+      </div>
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=600&q=80" alt="Project 3">
+        <h3>Blog App</h3>
+        <p>A dynamic blog web app created with JavaScript for front-end interactivity.This dynamic blog web app is designed using HTML, CSS, and JavaScript to provide an engaging and interactive user experience. The project focuses on front-end interactivity — enabling users to create, view, edit, and delete blog posts dynamically without the need for page reloads. It features a clean, responsive layout that adjusts beautifully across devices, ensuring accessibility on desktops, tablets, and mobiles.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-list">
+      <span class="skill">HTML</span>
+      <span class="skill">CSS</span>
+      <span class="skill">JavaScript</span>
+      <span class="skill">React</span>
+      <span class="skill">Python</span>
+      <span class="skill">Git & GitHub</span>
+      <span class="skill">Responsive Design</span>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2 class="section-title">Contact Me</h2>
+    <form class="contact-form" onsubmit="return sendMessage(event)">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 Sonia. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('nav ul');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Simple Contact Form Message
+    function sendMessage(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      alert(`Thank you, ${name}! Your message has been sent.`);
+      document.querySelector('.contact-form').reset();
+      return false;
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+          
